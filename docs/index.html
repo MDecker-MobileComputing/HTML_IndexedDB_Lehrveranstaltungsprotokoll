@@ -10,6 +10,16 @@
 
   <h1>Lehrveranstaltungsprotokoll mit IndexedDB</h1>
 
-  <script src="./lehrveranstaltungsprotokoll.js"></script>
+  <div id="divVeranstaltungen"></div>
+  <br><br>
+
+  <form id="anmeldeFormular">
+    <label for="inputNeueLehrveranstaltung">Neue Lehrveranstaltung:</label>
+    <input type="text" id="inputNeueLehrveranstaltung" required>
+    <button type="submit" id="buttonAnlegen">Anlegen</button>
+  </form>
+
+  <script src="./datenbank.js"></script>
+  <script src="./uebersicht.js"></script>
 
 </body>
