@@ -57,19 +57,19 @@ idbOpenRequest.onerror = function( event ) {
 /**
  * Neue Lehrveranstaltung in Datenbank anlegen.
  *
- * @param {string} nameLehrveranstaltung
+ * @param {string} nameLehrveranstaltung Name der neuen Lehrveranstaltung
  *
  * @returns {Promise<number>} Promise mit ID der neu erstellten Lehrveranstaltung
  */
 async function neueLehrveranstaltung( nameLehrveranstaltung ) {
 
-    return new Promise( (resolve, reject) => {
+    return new Promise( ( resolve, reject ) => {
 
         const tx      = datenbank.transaction( STORE_LEHRVERANSTALTUNGEN, "readwrite" );
         const store   = tx.objectStore( STORE_LEHRVERANSTALTUNGEN );
         const request = store.add( { name: nameLehrveranstaltung } );
 
         request.onsuccess = function() { resolve( request.result ); }; // ID der neu erstellten Lehrveranstaltung zurückgeben
-        request.onerror   = function() { reject( request.error   ); };
+        request.onerror   = function() { reject(  request.error  ); };
     });
 }

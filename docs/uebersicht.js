@@ -20,9 +20,11 @@ window.addEventListener( "load", async function () {
 /**
  * Event-Handler für Button zum Anlegen einer neuen Lehrveranstaltung.
  */
-async function onNeueLehrveranstaltungAnlegen() {
+async function onNeueLehrveranstaltungAnlegen( event ) {
 
-    let nameLehrveranstaltung = inputNeueLehrveranstaltung.value.trim();
+    event.preventDefault();
+
+    const nameLehrveranstaltung = inputNeueLehrveranstaltung.value.trim();
 
     if ( !nameLehrveranstaltung ) {
 
