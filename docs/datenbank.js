@@ -69,3 +69,24 @@ async function neueLehrveranstaltung( nameLehrveranstaltung ) {
         request.onerror   = () => reject(  request.error  );
       });
 }
+
+
+/**
+ * Alle Lehrveranstaltungen aus der Datenbank holen.
+ *
+ * @returns {Promise<Array>} Promise mit Array aller Lehrveranstaltungen
+ */
+async function alleLehrveranstaltungen() {
+
+    const datenbank = await holeDatenbankVerbindung();
+
+    return new Promise( ( resolve, reject ) => {
+
+        const tx      = datenbank.transaction( STORE_LEHRVERANSTALTUNGEN, "readonly" );
+        const store   = tx.objectStore( STORE_LEHRVERANSTALTUNGEN );
+        const request = store.getAll();
+
+        request.onsuccess = () => resolve( request.result );
+        request.onerror   = () => reject(  request.error  );
+    });
+}
