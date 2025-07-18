@@ -49,8 +49,8 @@ datenbank.onsuccess = function() {
 }
 
 /**
- * Event-Handler für Fehler beim Öffnen der Datenbank, z.B. wenn Speicherplatz erschöpft ist
- * oder die Datenbankdatei fehlerhaft ist.
+ * Event-Handler für Fehler beim Öffnen der Datenbank, z.B. wenn Speicherplatz
+ * erschöpft ist oder die Datenbankdatei fehlerhaft ist.
  */
 datenbank.onerror = function( event ) {
 
@@ -61,10 +61,10 @@ datenbank.onerror = function( event ) {
 async function neueLehrveranstaltung( nameLehrveranstaltung ) {
 
     return new Promise((resolve, reject) => {
-        const tx = datenbank.transaction( STORE_LEHRVERANSTALTUNGEN, "readwrite" );
-        const store = tx.objectStore( STORE_LEHRVERANSTALTUNGEN );
-        const request = store.add( { name: nameLehrveranstaltung } );
 
+        const tx      = datenbank.transaction( STORE_LEHRVERANSTALTUNGEN, "readwrite" );
+        const store   = tx.objectStore( STORE_LEHRVERANSTALTUNGEN );
+        const request = store.add( { name: nameLehrveranstaltung } );
 
         request.onsuccess = function() {
 

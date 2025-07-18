@@ -22,9 +22,9 @@ window.addEventListener( "load", async function () {
  */
 async function onNeueLehrveranstaltungAnlegen() {
 
-    let neueLehrveranstaltung = inputNeueLehrveranstaltung.value.trim();
+    let nameLehrveranstaltung = inputNeueLehrveranstaltung.value.trim();
 
-    if ( !neueLehrveranstaltung ) {
+    if ( !nameLehrveranstaltung ) {
 
         alert( "Bitte geben Sie eine Lehrveranstaltung ein." );
         return;
@@ -32,13 +32,14 @@ async function onNeueLehrveranstaltungAnlegen() {
 
     try {
 
-        const id = await neueLehrveranstaltung( neueLehrveranstaltung );
-        console.log( `Neue Lehrveranstaltung unter ID=${id} angelegt: \"${neueLehrveranstaltung}\"` );
+        const id = await neueLehrveranstaltung( nameLehrveranstaltung );
+        console.log( `Neue Lehrveranstaltung unter ID=${id} angelegt: \"${nameLehrveranstaltung}\"` );
 
     } catch ( fehler ) {
 
         alert( `Fehler beim Anlegen der Lehrveranstaltung \"${fehler.message}\".` );
-        console.error( `Fehler beim Anlegen der Lehrveranstaltung \"${fehler.message}\":`, fehler );
+        console.error( `Fehler beim Anlegen der Lehrveranstaltung \"${fehler.message}\":`,
+                       fehler );
     }
 
 }
