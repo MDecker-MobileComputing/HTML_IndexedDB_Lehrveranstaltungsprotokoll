@@ -32,7 +32,7 @@ idbOpenRequest.onupgradeneeded = function( event ) {
     }
 }
 
-
+/** Objekt für Zugriff auf geöffnete Datenbank. */
 let datenbank = null;
 
 /**

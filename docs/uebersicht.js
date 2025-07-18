@@ -37,6 +37,8 @@ async function onNeueLehrveranstaltungAnlegen( event ) {
         const id = await neueLehrveranstaltung( nameLehrveranstaltung );
         console.log( `Neue Lehrveranstaltung unter ID=${id} angelegt: \"${nameLehrveranstaltung}\"` );
 
+        inputNeueLehrveranstaltung.value = "";
+
     } catch ( fehler ) {
 
         alert( `Fehler beim Anlegen der Lehrveranstaltung \"${fehler.message}\".` );
