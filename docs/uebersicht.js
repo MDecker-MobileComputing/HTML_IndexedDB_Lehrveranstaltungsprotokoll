@@ -40,7 +40,8 @@ async function lehrveranstaltungenAnzeigen() {
     lehrveranstaltungen.forEach( (veranstaltung) => {
 
         const div = document.createElement( "div" );
-        div.innerHTML = `<p>${veranstaltung.name}</p>`;
+        div.className = "lehrveranstaltung-item";
+        div.innerHTML = `<a href="protokoll.html?id=${veranstaltung.id}">${veranstaltung.name}</a>`;
         divVeranstaltungen.appendChild( div );
     });
 }
