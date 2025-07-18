@@ -41,5 +41,4 @@ async function onNeueLehrveranstaltungAnlegen() {
         console.error( `Fehler beim Anlegen der Lehrveranstaltung \"${fehler.message}\":`,
                        fehler );
     }
-
 }
