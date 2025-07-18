@@ -90,3 +90,26 @@ async function alleLehrveranstaltungen() {
         request.onerror   = () => reject(  request.error  );
     });
 }
+
+
+/**
+ * Eine bestimmte Lehrveranstaltung anhand ihrer ID aus der Datenbank holen.
+ *
+ * @param {number} id ID der Lehrveranstaltung
+ *
+ * @returns {Promise<Object|null>} Promise mit Lehrveranstaltung-Objekt oder null wenn nicht gefunden
+ */
+async function getLehrveranstaltungById( id ) {
+
+    const datenbank = await holeDatenbankVerbindung();
+
+    return new Promise( ( resolve, reject ) => {
+
+        const tx      = datenbank.transaction( STORE_LEHRVERANSTALTUNGEN, "readonly" );
+        const store   = tx.objectStore( STORE_LEHRVERANSTALTUNGEN );
+        const request = store.get( id );
+
+        request.onsuccess = () => resolve( request.result || null );
+        request.onerror   = () => reject(  request.error  );
+    });
+}
