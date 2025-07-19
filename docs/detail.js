@@ -135,6 +135,14 @@ async function protokolleintraegeAnzeigen() {
         return;
     }
 
+    // Deutsches Datumsformat mit Wochentag
+    const datumsFormatOptionen = { 
+        weekday: 'short', 
+        day: '2-digit', 
+        month: '2-digit', 
+        year: 'numeric' 
+    };
+
     try {
 
         const protokolleintraegeArray = await getAlleProtokolleintraege( idAlsZahl );
@@ -143,9 +151,15 @@ async function protokolleintraegeAnzeigen() {
 
         protokolleintraegeArray.forEach( (eintrag) => {
 
+            // Datum von ISO-Format (YYYY-MM-DD) in deutsches Format umwandeln
+            const datumISO = eintrag.datum; // z.B. "2025-07-03"
+            const datumObjekt = new Date( datumISO + "T00:00:00" ); // Datum-Objekt erstellen
+            
+            const datumFormatiert = datumObjekt.toLocaleDateString( "de-DE", datumsFormatOptionen );
+            
             const div = document.createElement( "div" );
             div.className = "protokoll-eintrag";
-            div.innerHTML = `<strong>${eintrag.datum}</strong>: ${eintrag.thema}`;
+            div.innerHTML = `<strong>${datumFormatiert}</strong>: ${eintrag.thema}`;
             divProtokolleintraege.appendChild( div );
         });
     }
