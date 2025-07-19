@@ -2,6 +2,11 @@
 
 <br>
 
+Diese Repo enthält eine einfache Web-Seite (HTML, JavaScript und CSS), die das Speichern von Daten im 
+Web-Browser mit [IndexedDB](https://www.ionos.de/digitalguide/websites/web-entwicklung/indexeddb/) zeigt.
+
+<br>
+
 Web-Anwendung über *GitHub Pages*: [hier](https://mdecker-mobilecomputing.github.io/HTML_IndexedDB_Lehrveranstaltungsprotokoll/)
 
 <br>

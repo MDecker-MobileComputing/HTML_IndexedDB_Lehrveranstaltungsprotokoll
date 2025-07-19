@@ -41,7 +41,7 @@ async function lehrveranstaltungenAnzeigen() {
 
         const div = document.createElement( "div" );
         div.className = "lehrveranstaltung-item";
-        div.innerHTML = `<a href="protokoll.html?id=${veranstaltung.id}">${veranstaltung.name}</a>`;
+        div.innerHTML = `<a href="detail.html?id=${veranstaltung.id}">${veranstaltung.name}</a>`;
         divVeranstaltungen.appendChild( div );
     });
 }
