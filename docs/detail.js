@@ -135,13 +135,7 @@ async function protokolleintraegeAnzeigen() {
         return;
     }
 
-    // Deutsches Datumsformat mit Wochentag
-    const datumsFormatOptionen = { 
-        weekday: 'short', 
-        day: '2-digit', 
-        month: '2-digit', 
-        year: 'numeric' 
-    };
+    const datumFormatOptionen = { day: "2-digit", month: "2-digit", year: "numeric" };
 
     try {
 
@@ -152,10 +146,14 @@ async function protokolleintraegeAnzeigen() {
         protokolleintraegeArray.forEach( (eintrag) => {
 
             // Datum von ISO-Format (YYYY-MM-DD) in deutsches Format umwandeln
-            const datumISO = eintrag.datum; // z.B. "2025-07-03"
-            const datumObjekt = new Date( datumISO + "T00:00:00" ); // Datum-Objekt erstellen
+            const datumISO    = eintrag.datum; // z.B. "2025-07-03"
+            const datumObjekt = new Date( datumISO + "T00:00:00" );
             
-            const datumFormatiert = datumObjekt.toLocaleDateString( "de-DE", datumsFormatOptionen );
+            const datumOhneWochentag = datumObjekt.toLocaleDateString( "de-DE", datumFormatOptionen );
+            const wochentag          = datumObjekt.toLocaleDateString( "de-DE", { weekday: "short" });
+            
+            // Zusammenfügen: "03.07.2025 (Do)"
+            const datumFormatiert = `${datumOhneWochentag} (${wochentag})`;
             
             const div = document.createElement( "div" );
             div.className = "protokoll-eintrag";
