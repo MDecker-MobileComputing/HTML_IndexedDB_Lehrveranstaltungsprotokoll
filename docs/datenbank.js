@@ -113,3 +113,38 @@ async function getLehrveranstaltungById( id ) {
         request.onerror   = () => reject(  request.error  );
     });
 }
+
+
+/**
+ * Speichert einen neuen Protokolleintrag für eine bestimmte Lehrveranstaltung 
+ * und ein bestimmtes Datum in der Datenbank.
+ *
+ * @param {number} idVorlesung ID (Primärschlüssel) der Lehrveranstaltung
+ * 
+ * @param {string} datum Datum des Protokolleintrags
+ * 
+ * @param {string} thema Eigentlicher Inhalt, z.B. behandelte Themen
+ *
+ * @returns {Promise<number>} Promise mit ID des neu erstellten Protokolleintrags
+ */
+async function speichereProtokollEintrag( idVorlesung, datum, thema ) {
+
+    const datenbank = await holeDatenbankVerbindung();
+
+    // Erst prüfen, ob Lehrveranstaltung mit dieser ID existiert
+    const lehrveranstaltung = await getLehrveranstaltungById( idVorlesung );
+    if ( !lehrveranstaltung ) {
+
+        throw new Error( `Keine Lehrveranstaltung mit ID=${idVorlesung} gefunden.` );
+    }
+
+    return new Promise( ( resolve, reject ) => {
+
+        const tx      = datenbank.transaction( STORE_PROTOKOLLEINTRAG, "readwrite" );
+        const store   = tx.objectStore( STORE_PROTOKOLLEINTRAG );
+        const request = store.add({ vorlesungId: idVorlesung, datum: datum, thema: thema });
+
+        request.onsuccess = () => resolve( request.result );
+        request.onerror   = () => reject(  request.error  );
+    });
+}

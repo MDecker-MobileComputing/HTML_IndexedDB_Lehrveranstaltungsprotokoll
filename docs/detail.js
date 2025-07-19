@@ -2,6 +2,11 @@
 
 
 let spanNameLehrveranstaltung = null;
+let inputDatum                = null;
+let inputThema                = null;
+let buttonSpeichern           = null;
+
+let idAlsZahl = -1;
 
 
 /**
@@ -11,8 +16,17 @@ window.addEventListener( "load", async function () {
 
     spanNameLehrveranstaltung = document.getElementById( "spanNameLehrveranstaltung" );
 
-    const urlParams = new URLSearchParams( window.location.search );
-    const id = urlParams.get( "id" );
+    inputDatum      = document.getElementById( "inputDatum"      );
+    inputThema      = document.getElementById( "inputThema"      );
+    buttonSpeichern = document.getElementById( "buttonSpeichern" );
+
+    buttonSpeichern.addEventListener( "click", onButtonSpeichernClick );
+
+    inputDatumAufHeutigesDatumSetzen();
+
+    const queryString = window.location.search;
+    const urlParams   = new URLSearchParams( queryString );
+    const id          = urlParams.get( "id" );
 
     if ( !id ) {
 
@@ -20,17 +34,60 @@ window.addEventListener( "load", async function () {
         return;
     }
 
-    const idAlsZahl = parseInt( id, 10 );
-
-    if ( idAlsZahl ) {
-
-        await ladeLehrveranstaltung( idAlsZahl );
-
-    } else {
-
-        alert( `Lehrveranstaltungs-ID "${id}" ist keine gültige Zahl.` );
-    }
+    idAlsZahl = parseInt( id, 10 );
+    if ( idAlsZahl ) { await ladeLehrveranstaltung( idAlsZahl ); }
+    else { alert( `Lehrveranstaltungs-ID "${id}" ist keine gültige Zahl.` ); }
 });
+
+
+/**
+ * Setzt das Datum im Eingabefeld auf das heutige Datum; das heutige Datum wird auch als maximaler Wert gesetzt,
+ * um sicherzustellen, dass keine Eintträge in der Zukunft möglich sind.
+ */
+function inputDatumAufHeutigesDatumSetzen() {
+    
+    const heute          = new Date();
+    const heuteISOString = heute.toISOString();         // Vollständiger ISO-String, z.B. "2023-10-01T12:00:00.000Z"
+    const datumTeile     = heuteISOString.split( "T" ); // Aufteilen in Datum- und Zeit-Teile
+    const heuteISO       = datumTeile[ 0 ];             // Datum-Teil extrahieren: YYYY-MM-DD
+
+    inputDatum.value = heuteISO;   // Heutiges Datum als Standardwert setzen
+    inputDatum.max   = heuteISO;   // Maximales Datum auf heute begrenzen
+}
+
+/**
+ * Event-Handler für Button zum Anlegen eines neuen Protokoll-Eintrags.
+ */
+async function onButtonSpeichernClick( event ) {
+
+    event.preventDefault();
+
+    if ( idAlsZahl < 0 ) {
+
+        alert( "Keine gültige Lehrveranstaltung ausgewählt." );
+        return;
+    }
+
+    const datum = inputDatum.value.trim();
+    const thema = inputThema.value.trim();
+
+    if ( !datum || !thema ) {
+
+        alert( "Bitte füllen Sie beide Felder aus." );
+        return;
+    }
+
+    try {
+
+        await speichereProtokollEintrag( idAlsZahl, datum, thema );
+        alert( "Eintrag gespeichert." );
+
+    } catch ( fehler ) {
+
+        console.error( "Fehler beim Speichern des Eintrags:", fehler );
+        alert( "Fehler beim Speichern des Eintrags." );
+    }
+} 
 
 
 /**

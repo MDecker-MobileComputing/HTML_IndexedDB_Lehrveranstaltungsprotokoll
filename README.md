@@ -4,6 +4,9 @@
 
 Diese Repo enthält eine einfache Web-Seite (HTML, JavaScript und CSS), die das Speichern von Daten im 
 Web-Browser mit [IndexedDB](https://www.ionos.de/digitalguide/websites/web-entwicklung/indexeddb/) zeigt.
+Auf der Web-Seite kann man als Lehrender einzelne Lehrveranstaltungen (z.B. Vorlesungen) anlegen, 
+für die man dann das "Klassenbuch" führt, in dem v.a. eingetragen wird, welcher Stoff an den
+einzelnen Präsenzterminen behandelt wurde.
 
 <br>
 

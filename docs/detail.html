@@ -10,6 +10,25 @@
 
   <h1>Lehrveranstaltungsprotokoll: <span id="spanNameLehrveranstaltung"></span></h1>
 
+  <h2>Neuen Eintrag im Protokoll anlegen</h2>
+
+  <form id="anmeldeFormular">
+
+    <div>
+      <label for="inputDatum">Datum:</label>
+      <input type="date" id="inputDatum" required max="">
+      <!-- Wert von Attribut "max" wird per JavaScript gesetzt, um das heutige Datum als Maximalwert zu haben -->
+    </div><br>
+
+    <div>
+      <label for="inputThema">Thema:</label>
+      <input type="text" id="inputThema" required>
+    </div><br>
+
+    <button type="submit" id="buttonSpeichern">Speichern</button>
+
+  </form>
+  <br><br>
 
 
   <a href="index.html">Zurück zur Übersicht</a>

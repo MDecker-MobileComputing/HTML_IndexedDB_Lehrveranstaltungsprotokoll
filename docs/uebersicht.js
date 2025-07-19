@@ -2,7 +2,7 @@
 
 
 let inputNeueLehrveranstaltung = null;
-let buttonAnlegen = null;
+let buttonAnlegen              = null;
 
 let divVeranstaltungen = null;
 
