@@ -17,6 +17,8 @@ Web-Anwendung über *GitHub Pages*: [hier](https://mdecker-mobilecomputing.githu
 Inhalt von *IndexedDB*  in den Entwickler-Tools von Browser *Google Chrome* anschauen:
 [siehe hier](https://developer.chrome.com/docs/devtools/storage/indexeddb?hl=de)
 
+![Screenshot von IndexedDB-Inhalt in Entwickler-Tools von Chrome-Browser](Chrome_DevTools_ApplicationStorage.png)
+
 <br>
 
 ----

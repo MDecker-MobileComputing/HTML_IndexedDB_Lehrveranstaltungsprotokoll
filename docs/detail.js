@@ -128,6 +128,8 @@ async function onButtonSpeichernClick( event ) {
 
 const datumFormatOptionen     = { day: "2-digit", month: "2-digit", year: "numeric" };
 const wochentagFormatOptionen = { weekday: "short" };
+const uhrzeitFormatOptionen   = { hour: "2-digit", minute: "2-digit" };
+
 
 /**
  * Lädt und zeigt alle Protokolleinträge für die aktuell ausgewählte Lehrveranstaltung an.
@@ -214,30 +216,22 @@ async function onLinkPdfDownloadClick( event ) {
         doc.setFontSize(16);
         doc.text( `Lehrveranstaltungsprotokoll: ${lehrveranstaltungsName}`, 20, 20);
 
-        // Erstellungsdatum und -zeit für Footer
+        // Erstellungsdatum und -zeit in Fußzeile
         const jetzt = new Date();
-        const erstellungsdatum = jetzt.toLocaleDateString("de-DE", { 
-            day: "2-digit", 
-            month: "2-digit", 
-            year: "numeric" 
-        });
-        const erstellungszeit = jetzt.toLocaleTimeString("de-DE", { 
-            hour: "2-digit", 
-            minute: "2-digit" 
-        });
+        const erstellungsdatum = jetzt.toLocaleDateString( "de-DE", datumFormatOptionen );
+
+        const erstellungszeit = jetzt.toLocaleTimeString("de-DE", uhrzeitFormatOptionen );
         const footerText = `Erstellt am ${erstellungsdatum} um ${erstellungszeit} Uhr`;
 
-        // Funktion zum Hinzufügen des Footers
         const addFooter = () => {
-            doc.setFontSize(10);
-            doc.setFont(undefined, 'normal');
-            doc.text(footerText, 20, pageHeight - 10);
+            doc.setFontSize( 10 );
+            doc.setFont( undefined, "normal" );
+            doc.text( footerText, 20, pageHeight - 10 );
         };
 
         const protokolleintraegeArray = await getAlleProtokolleintraege( idAlsZahl );
 
-
-        doc.setFontSize(12);
+        doc.setFontSize( 12 );
         let yPosition = 55;
         const lineHeight = 8;
         const pageHeight = doc.internal.pageSize.height;
@@ -250,21 +244,20 @@ async function onLinkPdfDownloadClick( event ) {
                 yPosition = 20;
             }
 
-            // Datum formatieren (wie in protokolleintraegeAnzeigen)
             const datumISO = eintrag.datum;
-            const datumObjekt = new Date( datumISO + "T00:00:00" );
+            const datumObjekt        = new Date( datumISO + "T00:00:00" );
             const datumOhneWochentag = datumObjekt.toLocaleDateString( "de-DE", datumFormatOptionen );
-            const wochentag = datumObjekt.toLocaleDateString( "de-DE", wochentagFormatOptionen );
+            const wochentag          = datumObjekt.toLocaleDateString( "de-DE", wochentagFormatOptionen );
             const datumFormatiert = `${datumOhneWochentag} (${wochentag})`;
 
             // Datum (fett)
-            doc.setFont(undefined, 'bold');
-            doc.text(datumFormatiert + ":", 20, yPosition);
+            doc.setFont( undefined, "bold" );
+            doc.text( datumFormatiert + ":", 20, yPosition );
             
             // Thema (normal)
-            doc.setFont(undefined, 'normal');
-            const themaLines = doc.splitTextToSize(eintrag.thema, 150);
-            doc.text(themaLines, 70, yPosition);
+            doc.setFont( undefined, "normal" );
+            const themaLines = doc.splitTextToSize( eintrag.thema, 150 );
+            doc.text( themaLines, 70, yPosition );
             
             yPosition += lineHeight * themaLines.length + 5;
         });
@@ -272,11 +265,10 @@ async function onLinkPdfDownloadClick( event ) {
         // Footer auf letzte Seite hinzufügen
         addFooter();
 
-
         // PDF im Browser anzeigen (inline)
-        const pdfBlob = doc.output('blob');
-        const pdfUrl = URL.createObjectURL(pdfBlob);
-        window.open(pdfUrl, '_blank');
+        const pdfBlob = doc.output( "blob" );
+        const pdfUrl  = URL.createObjectURL( pdfBlob );
+        window.open( pdfUrl, "_blank" );
         
     } catch ( fehler ) {
 

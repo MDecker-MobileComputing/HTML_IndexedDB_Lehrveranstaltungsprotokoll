@@ -1,0 +1,380 @@
+%PDF-1.3
+%–’—ô
+1 0 obj
+<<
+/Author (Lehrveranstaltungsprotokoll \(Demo f¸r IndexedDB\))
+/CreationDate (D:20250719191454+02'00')
+/Creator (jsPDF)
+/ModDate (D:20250719191552+02'00')
+/Producer (jsPDF 2.5.1)
+/Subject (Lehrveranstaltungsprotokoll)
+/Title (Lehrveranstaltungsprotokoll f¸r VWL)
+>>
+endobj
+2 0 obj
+<<
+/Metadata 3 0 R
+/OpenAction <<
+/D [4 0 R /Fit]
+/S /GoTo
+>>
+/PageLayout /OneColumn
+/Pages 5 0 R
+/Type /Catalog
+>>
+endobj
+3 0 obj
+<<
+/Length 3348
+/Subtype /XML
+/Type /Metadata
+>>
+stream
+<?xpacket begin="Ôªø" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="XMP Core 6.0.0">
+	<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+		<rdf:Description rdf:about=""
+				xmlns:dc="http://purl.org/dc/elements/1.1/"
+				xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+				xmlns:pdf="http://ns.adobe.com/pdf/1.3/"
+				xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/">
+			<dc:creator>
+				<rdf:Seq>
+					<rdf:li>Lehrveranstaltungsprotokoll (Demo f√ºr IndexedDB)</rdf:li>
+				</rdf:Seq>
+			</dc:creator>
+			<dc:description>
+				<rdf:Alt>
+					<rdf:li xml:lang="x-default">Lehrveranstaltungsprotokoll</rdf:li>
+				</rdf:Alt>
+			</dc:description>
+			<dc:title>
+				<rdf:Alt>
+					<rdf:li xml:lang="x-default">Lehrveranstaltungsprotokoll f√ºr VWL</rdf:li>
+				</rdf:Alt>
+			</dc:title>
+			<dc:format>application/pdf</dc:format>
+			<xmp:CreateDate>2025-07-19T19:14:54+02:00</xmp:CreateDate>
+			<xmp:CreatorTool>jsPDF</xmp:CreatorTool>
+			<xmp:ModifyDate>2025-07-19T19:15:52+02:00</xmp:ModifyDate>
+			<pdf:Producer>jsPDF 2.5.1</pdf:Producer>
+			<xmpMM:DocumentID>uuid:bb4e3e85-961e-4d91-af27-b2786a50b3a4</xmpMM:DocumentID>
+			<xmpMM:InstanceID>uuid:8484bb2b-93f2-49db-9142-fe45ad85666b</xmpMM:InstanceID>
+		</rdf:Description>
+	</rdf:RDF>
+</x:xmpmeta>
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                           
+<?xpacket end="w"?>
+endstream
+endobj
+4 0 obj
+<<
+/Contents 6 0 R
+/MediaBox [0 0 595.28 841.89]
+/Parent 5 0 R
+/Resources 7 0 R
+/Type /Page
+>>
+endobj
+5 0 obj
+<<
+/Count 1
+/Kids [4 0 R]
+/Type /Pages
+>>
+endobj
+6 0 obj
+<<
+/Length 1156
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 16 Tf
+18.3999999999999986 TL
+0 g
+56.6929133858267775 785.1970866141732586 Td
+(Lehrveranstaltungsprotokoll: VWL) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0 g
+56.6929133858267775 685.9844881889763428 Td
+(01.07.2025 \(Di\):) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+198.4251968503937178 685.9844881889763428 Td
+(Abgrenzung VWL zu BWL) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0 g
+56.6929133858267775 649.1340944881889072 Td
+(14.07.2025 \(Mo\):) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+198.4251968503937178 649.1340944881889072 Td
+(Marko vs Mikro) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0 g
+56.6929133858267775 612.2837007874015853 Td
+(15.07.2025 \(Di\):) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+198.4251968503937178 612.2837007874015853 Td
+(Mathematische Grundlagen) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0 g
+56.6929133858267775 575.4333070866141497 Td
+(16.07.2025 \(Mi\):) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+198.4251968503937178 575.4333070866141497 Td
+(Nutzenfunktionen) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+56.6929133858267775 28.3464566929134207 Td
+(Erstellt am 19.07.2025 um 19:14 Uhr) Tj
+ET
+endstream
+endobj
+7 0 obj
+<<
+/Font <<
+/F1 8 0 R
+/F2 9 0 R
+/F3 10 0 R
+/F4 11 0 R
+/F5 12 0 R
+/F6 13 0 R
+/F7 14 0 R
+/F8 15 0 R
+/F9 16 0 R
+/F10 17 0 R
+/F11 18 0 R
+/F12 19 0 R
+/F13 20 0 R
+/F14 21 0 R
+>>
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+/XObject <<
+>>
+>>
+endobj
+8 0 obj
+<<
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+9 0 obj
+<<
+/BaseFont /Helvetica-Bold
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+10 0 obj
+<<
+/BaseFont /Helvetica-Oblique
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+11 0 obj
+<<
+/BaseFont /Helvetica-BoldOblique
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+12 0 obj
+<<
+/BaseFont /Courier
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+13 0 obj
+<<
+/BaseFont /Courier-Bold
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+14 0 obj
+<<
+/BaseFont /Courier-Oblique
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+15 0 obj
+<<
+/BaseFont /Courier-BoldOblique
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+16 0 obj
+<<
+/BaseFont /Times-Roman
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+17 0 obj
+<<
+/BaseFont /Times-Bold
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+18 0 obj
+<<
+/BaseFont /Times-Italic
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+19 0 obj
+<<
+/BaseFont /Times-BoldItalic
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+20 0 obj
+<<
+/BaseFont /ZapfDingbats
+/FirstChar 32
+/LastChar 255
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+21 0 obj
+<<
+/BaseFont /Symbol
+/FirstChar 32
+/LastChar 255
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+xref
+0 22
+0000000000 65535 f
+0000000015 00000 n
+0000000297 00000 n
+0000000428 00000 n
+0000003858 00000 n
+0000003968 00000 n
+0000004025 00000 n
+0000005233 00000 n
+0000005484 00000 n
+0000005609 00000 n
+0000005739 00000 n
+0000005873 00000 n
+0000006011 00000 n
+0000006135 00000 n
+0000006264 00000 n
+0000006396 00000 n
+0000006532 00000 n
+0000006660 00000 n
+0000006787 00000 n
+0000006916 00000 n
+0000007049 00000 n
+0000007151 00000 n
+trailer
+<<
+/ID [<A127C92EC593A166A4CE31D34AF1D75C> <A127C92EC593A166A4CE31D34AF1D75C>]
+/Info 1 0 R
+/Root 2 0 R
+/Size 22
+>>
+%PXC-Ver:10.6.0.396-Date:20250719171552-SHA:00001F17:E32769008CAE10BACA94E754E702FD6CB7B9C3814244BD6DB1C0C16B3AE06581
+startxref
+7247
+%%EOF
