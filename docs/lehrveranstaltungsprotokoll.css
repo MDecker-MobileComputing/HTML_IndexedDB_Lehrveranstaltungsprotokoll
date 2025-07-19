@@ -11,7 +11,7 @@ a {
     margin-bottom: 1em;
 }
 
-.lehrveranstaltung-item {
+.lehrveranstaltung-item, .protokoll-eintrag  {
     margin-bottom: 10px;
 }
 

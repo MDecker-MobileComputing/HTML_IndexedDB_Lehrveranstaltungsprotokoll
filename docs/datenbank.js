@@ -76,7 +76,7 @@ async function neueLehrveranstaltung( nameLehrveranstaltung ) {
  *
  * @returns {Promise<Array>} Promise mit Array aller Lehrveranstaltungen
  */
-async function alleLehrveranstaltungen() {
+async function getAlleLehrveranstaltungen() {
 
     const datenbank = await holeDatenbankVerbindung();
 
@@ -143,6 +143,30 @@ async function speichereProtokollEintrag( idVorlesung, datum, thema ) {
         const tx      = datenbank.transaction( STORE_PROTOKOLLEINTRAG, "readwrite" );
         const store   = tx.objectStore( STORE_PROTOKOLLEINTRAG );
         const request = store.add({ vorlesungId: idVorlesung, datum: datum, thema: thema });
+
+        request.onsuccess = () => resolve( request.result );
+        request.onerror   = () => reject(  request.error  );
+    });
+}
+
+
+/**
+ * Holt alle Protokolleinträge für eine bestimmte Lehrveranstaltung.
+ *
+ * @param {number} idVorlesung ID der Lehrveranstaltung
+ * 
+ * @returns {Promise<Array>} Promise mit Array aller Protokolleinträge
+ */
+async function getAlleProtokolleintraege( idVorlesung ) {
+
+    const datenbank = await holeDatenbankVerbindung();
+
+    return new Promise( ( resolve, reject ) => {
+
+        const tx      = datenbank.transaction( STORE_PROTOKOLLEINTRAG, "readonly" );
+        const store   = tx.objectStore( STORE_PROTOKOLLEINTRAG );
+        const index   = store.index( "vorlesungId" );
+        const request = index.getAll( idVorlesung );
 
         request.onsuccess = () => resolve( request.result );
         request.onerror   = () => reject(  request.error  );

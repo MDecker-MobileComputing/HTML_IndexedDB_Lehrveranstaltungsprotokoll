@@ -55,6 +55,36 @@ function inputDatumAufHeutigesDatumSetzen() {
     inputDatum.max   = heuteISO;   // Maximales Datum auf heute begrenzen
 }
 
+
+/**
+ * Ladet die Lehrveranstaltung anhand der ID.
+ * 
+ * @param {number} id ID der Lehrveranstaltung, die geladen werden soll
+ */
+async function ladeLehrveranstaltung( id ) {
+
+    try {
+
+        const lehrveranstaltung = await getLehrveranstaltungById( id );
+        if ( lehrveranstaltung ) {
+
+            spanNameLehrveranstaltung.textContent = lehrveranstaltung.name;
+            await protokolleintraegeAnzeigen();
+
+        } else {
+
+            alert( `Keine Lehrveranstaltung mit ID=${id} gefunden.`, id );
+        }
+    }
+    catch ( fehler ) {
+
+        console.error( "Fehler beim Laden der Lehrveranstaltung von Datenbank:", fehler );
+        alert( "Fehler beim Laden der Lehrveranstaltung von Datenbank." );
+        return;
+    }
+}
+
+
 /**
  * Event-Handler für Button zum Anlegen eines neuen Protokoll-Eintrags.
  */
@@ -80,7 +110,9 @@ async function onButtonSpeichernClick( event ) {
     try {
 
         await speichereProtokollEintrag( idAlsZahl, datum, thema );
-        alert( "Eintrag gespeichert." );
+        
+        inputThema.value = "";
+        await protokolleintraegeAnzeigen();
 
     } catch ( fehler ) {
 
@@ -91,28 +123,32 @@ async function onButtonSpeichernClick( event ) {
 
 
 /**
- * Ladet die Lehrveranstaltung anhand der ID.
- * 
- * @param {number} id ID der Lehrveranstaltung, die geladen werden soll
+ * Lädt und zeigt alle Protokolleinträge für die aktuell ausgewählte Lehrveranstaltung an.
  */
-async function ladeLehrveranstaltung( id ) {
+async function protokolleintraegeAnzeigen() {
+
+    if ( idAlsZahl < 0 ) {
+
+        alert( "Keine gültige Lehrveranstaltung ausgewählt." );
+        return;
+    }
 
     try {
 
-        const lehrveranstaltung = await getLehrveranstaltungById( id );
-        if ( lehrveranstaltung ) {
+        const protokolleintraegeArray = await getAlleProtokolleintraege( idAlsZahl );
 
-            spanNameLehrveranstaltung.textContent = lehrveranstaltung.name;
+        protokolleintraegeArray.forEach( (eintrag) => {
 
-        } else {
-
-            alert( `Keine Lehrveranstaltung mit ID=${id} gefunden.`, id );
-        }
+            const div = document.createElement( "div" );
+            div.className = "protokoll-eintrag";
+            div.innerHTML = `<strong>${eintrag.datum}</strong>: ${eintrag.thema}`;
+            document.getElementById( "divProtokolleintraege" ).appendChild( div );
+        });
     }
     catch ( fehler ) {
 
-        console.error( "Fehler beim Laden der Lehrveranstaltung von Datenbank:", fehler );
-        alert( "Fehler beim Laden der Lehrveranstaltung von Datenbank." );
+        console.error( "Fehler beim Laden der Protokolleinträge:", fehler );
+        alert( "Fehler beim Laden der Protokolleinträge." );
         return;
     }
 }

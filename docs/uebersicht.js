@@ -27,7 +27,7 @@ window.addEventListener( "load", async function () {
  */
 async function lehrveranstaltungenAnzeigen() {
 
-    const lehrveranstaltungen = await alleLehrveranstaltungen();
+    const lehrveranstaltungen = await getAlleLehrveranstaltungen();
 
     divVeranstaltungen.innerHTML = "";
 
