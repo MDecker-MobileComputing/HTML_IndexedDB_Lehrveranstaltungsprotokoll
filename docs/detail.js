@@ -174,7 +174,7 @@ async function protokolleintraegeAnzeigen() {
 
 
 /**
- * Event-Handler für den PDF-Download-Link.
+ * Event-Handler für Erzeugung PDF-Export mit jsPDF.
  */
 async function onLinkPdfDownloadClick( event ) {
 
@@ -201,12 +201,39 @@ async function onLinkPdfDownloadClick( event ) {
         // Lehrveranstaltungsname holen
         const lehrveranstaltungsName = spanNameLehrveranstaltung.textContent;
 
-        // PDF-Titel
+        // PDF-Metadaten setzen
+        const dokumententitel = `Lehrveranstaltungsprotokoll für ${lehrveranstaltungsName}`;
+        doc.setProperties({
+            title: dokumententitel,
+            subject: "Lehrveranstaltungsprotokoll",
+            author: "Lehrveranstaltungsprotokoll (Demo für IndexedDB)",
+            creator: "jsPDF"
+        });
+
+        // Überschrift
         doc.setFontSize(16);
         doc.text( `Lehrveranstaltungsprotokoll: ${lehrveranstaltungsName}`, 20, 20);
 
+        // Erstellungsdatum und -zeit für Footer
+        const jetzt = new Date();
+        const erstellungsdatum = jetzt.toLocaleDateString("de-DE", { 
+            day: "2-digit", 
+            month: "2-digit", 
+            year: "numeric" 
+        });
+        const erstellungszeit = jetzt.toLocaleTimeString("de-DE", { 
+            hour: "2-digit", 
+            minute: "2-digit" 
+        });
+        const footerText = `Erstellt am ${erstellungsdatum} um ${erstellungszeit} Uhr`;
 
-        // Protokolleinträge holen
+        // Funktion zum Hinzufügen des Footers
+        const addFooter = () => {
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.text(footerText, 20, pageHeight - 10);
+        };
+
         const protokolleintraegeArray = await getAlleProtokolleintraege( idAlsZahl );
 
 
@@ -217,7 +244,8 @@ async function onLinkPdfDownloadClick( event ) {
 
         protokolleintraegeArray.forEach( (eintrag) => {
             // Prüfen ob neue Seite benötigt wird
-            if ( yPosition > pageHeight - 30 ) {
+            if ( yPosition > pageHeight - 40 ) { // Mehr Platz für Footer lassen
+                addFooter(); // Footer auf aktuelle Seite
                 doc.addPage();
                 yPosition = 20;
             }
@@ -240,6 +268,9 @@ async function onLinkPdfDownloadClick( event ) {
             
             yPosition += lineHeight * themaLines.length + 5;
         });
+
+        // Footer auf letzte Seite hinzufügen
+        addFooter();
 
 
         // PDF im Browser anzeigen (inline)
