@@ -5,6 +5,7 @@ let spanNameLehrveranstaltung = null;
 let inputDatum                = null;
 let inputThema                = null;
 let buttonSpeichern           = null;
+let divProtokolleintraege     = null;
 
 let idAlsZahl = -1;
 
@@ -16,9 +17,10 @@ window.addEventListener( "load", async function () {
 
     spanNameLehrveranstaltung = document.getElementById( "spanNameLehrveranstaltung" );
 
-    inputDatum      = document.getElementById( "inputDatum"      );
-    inputThema      = document.getElementById( "inputThema"      );
-    buttonSpeichern = document.getElementById( "buttonSpeichern" );
+    inputDatum            = document.getElementById( "inputDatum"            );
+    inputThema            = document.getElementById( "inputThema"            );
+    buttonSpeichern       = document.getElementById( "buttonSpeichern"       );
+    divProtokolleintraege = document.getElementById( "divProtokolleintraege" );
 
     buttonSpeichern.addEventListener( "click", onButtonSpeichernClick );
 
@@ -137,12 +139,14 @@ async function protokolleintraegeAnzeigen() {
 
         const protokolleintraegeArray = await getAlleProtokolleintraege( idAlsZahl );
 
+        divProtokolleintraege.innerHTML = ""; // sicherstellen, dass der Container leer ist, bevor neue Einträge hinzugefügt werden
+
         protokolleintraegeArray.forEach( (eintrag) => {
 
             const div = document.createElement( "div" );
             div.className = "protokoll-eintrag";
             div.innerHTML = `<strong>${eintrag.datum}</strong>: ${eintrag.thema}`;
-            document.getElementById( "divProtokolleintraege" ).appendChild( div );
+            divProtokolleintraege.appendChild( div );
         });
     }
     catch ( fehler ) {

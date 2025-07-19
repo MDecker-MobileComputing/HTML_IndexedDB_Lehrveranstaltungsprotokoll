@@ -155,7 +155,8 @@ async function speichereProtokollEintrag( idVorlesung, datum, thema ) {
  *
  * @param {number} idVorlesung ID der Lehrveranstaltung
  * 
- * @returns {Promise<Array>} Promise mit Array aller Protokolleinträge
+ * @returns {Promise<Array>} Promise mit Array aller Protokolleinträge, 
+ *                           aufsteigend nach Datum sortiert
  */
 async function getAlleProtokolleintraege( idVorlesung ) {
 
@@ -168,7 +169,12 @@ async function getAlleProtokolleintraege( idVorlesung ) {
         const index   = store.index( "vorlesungId" );
         const request = index.getAll( idVorlesung );
 
-        request.onsuccess = () => resolve( request.result );
+        request.onsuccess = () => {
+
+            const protokolleintraege = request.result;
+            protokolleintraege.sort( (a, b) => a.datum.localeCompare(b.datum) );
+            resolve( protokolleintraege );
+        };
         request.onerror   = () => reject(  request.error  );
     });
 }
