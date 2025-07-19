@@ -6,6 +6,7 @@ let inputDatum                = null;
 let inputThema                = null;
 let buttonSpeichern           = null;
 let divProtokolleintraege     = null;
+let linkPdfDownload           = null;
 
 let idAlsZahl = -1;
 
@@ -21,8 +22,10 @@ window.addEventListener( "load", async function () {
     inputThema            = document.getElementById( "inputThema"            );
     buttonSpeichern       = document.getElementById( "buttonSpeichern"       );
     divProtokolleintraege = document.getElementById( "divProtokolleintraege" );
+    linkPdfDownload       = document.getElementById( "linkPdfDownload"       );
 
     buttonSpeichern.addEventListener( "click", onButtonSpeichernClick );
+    linkPdfDownload.addEventListener( "click", onLinkPdfDownloadClick );
 
     inputDatumAufHeutigesDatumSetzen();
 
@@ -166,5 +169,87 @@ async function protokolleintraegeAnzeigen() {
         console.error( "Fehler beim Laden der Protokolleinträge:", fehler );
         alert( "Fehler beim Laden der Protokolleinträge." );
         return;
+    }
+}
+
+
+/**
+ * Event-Handler für den PDF-Download-Link.
+ */
+async function onLinkPdfDownloadClick( event ) {
+
+    event.preventDefault();
+    
+    if ( idAlsZahl < 0 ) {
+        alert( "Keine gültige Lehrveranstaltung ausgewählt." );
+        return;
+    }
+
+    const protokolleintraegeArray = await getAlleProtokolleintraege( idAlsZahl );
+
+    if ( protokolleintraegeArray.length === 0 ) {
+
+        alert( "Leeres Protokoll, kann kein PDF erzeugen." );
+        return;
+    }
+
+    try {
+
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Lehrveranstaltungsname holen
+        const lehrveranstaltungsName = spanNameLehrveranstaltung.textContent;
+
+        // PDF-Titel
+        doc.setFontSize(16);
+        doc.text( `Lehrveranstaltungsprotokoll: ${lehrveranstaltungsName}`, 20, 20);
+
+
+        // Protokolleinträge holen
+        const protokolleintraegeArray = await getAlleProtokolleintraege( idAlsZahl );
+
+
+        doc.setFontSize(12);
+        let yPosition = 55;
+        const lineHeight = 8;
+        const pageHeight = doc.internal.pageSize.height;
+
+        protokolleintraegeArray.forEach( (eintrag) => {
+            // Prüfen ob neue Seite benötigt wird
+            if ( yPosition > pageHeight - 30 ) {
+                doc.addPage();
+                yPosition = 20;
+            }
+
+            // Datum formatieren (wie in protokolleintraegeAnzeigen)
+            const datumISO = eintrag.datum;
+            const datumObjekt = new Date( datumISO + "T00:00:00" );
+            const datumOhneWochentag = datumObjekt.toLocaleDateString( "de-DE", datumFormatOptionen );
+            const wochentag = datumObjekt.toLocaleDateString( "de-DE", wochentagFormatOptionen );
+            const datumFormatiert = `${datumOhneWochentag} (${wochentag})`;
+
+            // Datum (fett)
+            doc.setFont(undefined, 'bold');
+            doc.text(datumFormatiert + ":", 20, yPosition);
+            
+            // Thema (normal)
+            doc.setFont(undefined, 'normal');
+            const themaLines = doc.splitTextToSize(eintrag.thema, 150);
+            doc.text(themaLines, 70, yPosition);
+            
+            yPosition += lineHeight * themaLines.length + 5;
+        });
+
+
+        // PDF im Browser anzeigen (inline)
+        const pdfBlob = doc.output('blob');
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        window.open(pdfUrl, '_blank');
+        
+    } catch ( fehler ) {
+
+        console.error( "Fehler beim Erstellen der PDF:", fehler );
+        alert( "Fehler beim Erstellen der PDF-Datei." );
     }
 }
