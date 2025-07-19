@@ -86,7 +86,10 @@ async function getAlleLehrveranstaltungen() {
         const store   = tx.objectStore( STORE_LEHRVERANSTALTUNGEN );
         const request = store.getAll();
 
-        request.onsuccess = () => resolve( request.result );
+        request.onsuccess = () => { 
+          request.result.sort( ( a, b ) => a.name.localeCompare( b.name ) );
+          resolve( request.result );
+        };
         request.onerror   = () => reject(  request.error  );
     });
 }
@@ -109,8 +112,8 @@ async function getLehrveranstaltungById( id ) {
         const store   = tx.objectStore( STORE_LEHRVERANSTALTUNGEN );
         const request = store.get( id );
 
-        request.onsuccess = () => resolve( request.result || null );
-        request.onerror   = () => reject(  request.error  );
+        request.onsuccess = () => resolve( request.result || null ); // ggf. null zurückgeben um "undefined" zu vermeiden
+        request.onerror   = () => reject(  request.error );
     });
 }
 

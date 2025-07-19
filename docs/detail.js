@@ -123,6 +123,8 @@ async function onButtonSpeichernClick( event ) {
     }
 } 
 
+const datumFormatOptionen     = { day: "2-digit", month: "2-digit", year: "numeric" };
+const wochentagFormatOptionen = { weekday: "short" };
 
 /**
  * Lädt und zeigt alle Protokolleinträge für die aktuell ausgewählte Lehrveranstaltung an.
@@ -134,8 +136,6 @@ async function protokolleintraegeAnzeigen() {
         alert( "Keine gültige Lehrveranstaltung ausgewählt." );
         return;
     }
-
-    const datumFormatOptionen = { day: "2-digit", month: "2-digit", year: "numeric" };
 
     try {
 
@@ -149,8 +149,8 @@ async function protokolleintraegeAnzeigen() {
             const datumISO    = eintrag.datum; // z.B. "2025-07-03"
             const datumObjekt = new Date( datumISO + "T00:00:00" );
             
-            const datumOhneWochentag = datumObjekt.toLocaleDateString( "de-DE", datumFormatOptionen );
-            const wochentag          = datumObjekt.toLocaleDateString( "de-DE", { weekday: "short" });
+            const datumOhneWochentag = datumObjekt.toLocaleDateString( "de-DE", datumFormatOptionen     );
+            const wochentag          = datumObjekt.toLocaleDateString( "de-DE", wochentagFormatOptionen );
             
             // Zusammenfügen: "03.07.2025 (Do)"
             const datumFormatiert = `${datumOhneWochentag} (${wochentag})`;
