@@ -200,7 +200,6 @@ async function onLinkPdfDownloadClick( event ) {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
-        // Lehrveranstaltungsname holen
         const lehrveranstaltungsName = spanNameLehrveranstaltung.textContent;
 
         // PDF-Metadaten setzen
@@ -208,8 +207,9 @@ async function onLinkPdfDownloadClick( event ) {
         doc.setProperties({
             title: dokumententitel,
             subject: "Lehrveranstaltungsprotokoll",
-            author: "Lehrveranstaltungsprotokoll (Demo für IndexedDB)",
-            creator: "jsPDF"
+            author: "Web-App \"Lehrveranstaltungsprotokoll\" (Demo für IndexedDB)",
+            creator: "jsPDF",
+            keywords: `${lehrveranstaltungsName}, Lehrveranstaltung, Protokoll, Studium, IndexedDB, jsPDF`
         });
 
         // Überschrift
@@ -265,9 +265,16 @@ async function onLinkPdfDownloadClick( event ) {
         // Footer auf letzte Seite hinzufügen
         addFooter();
 
-        // PDF-Datei unter einem spezifischen Namen speichern
+        // PDF-Dateiname mit Datum und Zeit erstellen
         const bereinigterName = lehrveranstaltungsName.replace( /[^a-zA-Z0-9äöüÄÖÜß]/g, "_" );
-        const dateiname       = `Protokoll_${bereinigterName}.pdf`;
+        
+        // Aktuelles Datum und Zeit für Dateiname
+        const jetzFuerDateiname  = new Date();
+        const datumFuerDateiname = jetzFuerDateiname.toISOString().split( "T" )[0]; // YYYY-MM-DD
+        const stundenMinuten     = jetzFuerDateiname.toTimeString().slice( 0, 5 ).replace( ":", "-" ); // HH-MM
+        
+        const dateiname = `${bereinigterName}_${datumFuerDateiname}_${stundenMinuten}.pdf`;
+        
         doc.save( dateiname );
         
     } catch ( fehler ) {
