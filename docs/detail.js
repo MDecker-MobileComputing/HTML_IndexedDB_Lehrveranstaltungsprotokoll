@@ -265,10 +265,10 @@ async function onLinkPdfDownloadClick( event ) {
         // Footer auf letzte Seite hinzufügen
         addFooter();
 
-        // PDF im Browser anzeigen (inline)
-        const pdfBlob = doc.output( "blob" );
-        const pdfUrl  = URL.createObjectURL( pdfBlob );
-        window.open( pdfUrl, "_blank" );
+        // PDF-Datei unter einem spezifischen Namen speichern
+        const bereinigterName = lehrveranstaltungsName.replace( /[^a-zA-Z0-9äöüÄÖÜß]/g, "_" );
+        const dateiname       = `Protokoll_${bereinigterName}.pdf`;
+        doc.save( dateiname );
         
     } catch ( fehler ) {
 
